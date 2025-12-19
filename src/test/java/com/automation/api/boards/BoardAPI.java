@@ -15,7 +15,7 @@ public class BoardAPI  {
     @Step("Create a new Board")
     public Response createBoard(CreateBoardParams queryParams)
     {
-        HashMap<String,String> params = AuthUtils.authUtils();
+        HashMap<String,Object> params = AuthUtils.authUtils();
         params.putAll(queryParams.build());
 
 
@@ -24,9 +24,9 @@ public class BoardAPI  {
     }
 
     @Step("Get board by ID")
-    public Response getBoard(String idBoard, HashMap<String,String> queryParams)
+    public Response getBoard(String idBoard, HashMap<String,Object> queryParams)
     {
-        HashMap<String,String> params = AuthUtils.authUtils();
+        HashMap<String,Object> params = AuthUtils.authUtils();
         params.putAll(queryParams);
 
         return RestClient.get("/boards/" + idBoard, params, ResponseSpecs.success());
@@ -39,9 +39,9 @@ public class BoardAPI  {
     }
 
     @Step ("Update Board")
-    public Response updateBoard(String idBoard, HashMap <String, String> queryParams)
+    public Response updateBoard(String idBoard, HashMap <String, Object> queryParams)
     {
-        HashMap<String,String> params = AuthUtils.authUtils();
+        HashMap<String,Object> params = AuthUtils.authUtils();
         params.putAll(queryParams);
 
 
