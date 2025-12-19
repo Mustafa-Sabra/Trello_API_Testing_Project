@@ -19,7 +19,7 @@ public class ListAPI   {
         params.putAll(queryParams.build());
 
 
-        return RestClient.post("/boards", params, ResponseSpecs.created());
+        return RestClient.post("/lists", params, ResponseSpecs.created());
 
     }
 
@@ -30,7 +30,7 @@ public class ListAPI   {
         params.putAll(queryParams);
 
 
-        return RestClient.post("/boards/" + id, params, ResponseSpecs.created());
+        return RestClient.post("/lists/" + id, params, ResponseSpecs.created());
 
     }
 
@@ -41,7 +41,7 @@ public class ListAPI   {
         params.putAll(queryParams);
 
 
-        return RestClient.post("/boards/" + id, params, ResponseSpecs.created());
+        return RestClient.post("/lists/" + id, params, ResponseSpecs.created());
 
     }
 
@@ -52,7 +52,7 @@ public class ListAPI   {
         params.putAll(queryParams);
 
 
-        return RestClient.post("/boards/" + id, params, ResponseSpecs.created());
+        return RestClient.post("/lists/" + id, params, ResponseSpecs.created());
 
     }
 
