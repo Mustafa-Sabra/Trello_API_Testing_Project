@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class AuthUtils {
 
 
-    public static HashMap<String,String> authUtils()
+    public static HashMap<String,Object> authUtils()
     {
 
-        HashMap<String,String> params = new HashMap<>();
+        HashMap<String,Object> params = new HashMap<>();
         params.put("key", ConfigManager.getApiKey());
         params.put("token", ConfigManager.getApiToken());
 
