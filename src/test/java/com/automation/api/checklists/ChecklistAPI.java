@@ -8,8 +8,6 @@ import io.restassured.response.Response;
 
 import java.util.HashMap;
 
-import static io.restassured.RestAssured.given;
-
 public class ChecklistAPI  {
 
     @Step("Create a new Checklist")
