@@ -1,21 +1,36 @@
 package com.automation.tests.Boards;
 
-import com.automation.api.BoardAPI;
-import com.automation.base.BaseTest;
+import com.automation.api.boards.BoardAPI;
+import com.automation.api.boards.CreateBoardParams;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static com.automation.utils.ResponseUtils.assertStatusCode;
 
-public class DeleteBoardTest extends BaseTest {
+public class DeleteBoardTest {
 
 
     @Test
-    public void deleteBoard()
+    public void deleteBoardSuccefullyTest()
     {
-        Response res = new BoardAPI().deleteBoard("chIvMWNx");
+        BoardAPI boardAPI = new BoardAPI();
+        String boardId = boardAPI.createBoard(new CreateBoardParams("my first board"),200).jsonPath().getString("id");
 
-        assertStatusCode(res, 200);
+        boardAPI.deleteBoard("boardId",200);
+
+
+    }
+
+    @Test
+    public void deleteBoardNegativeTest()
+    {
+        BoardAPI boardAPI = new BoardAPI();
+        String boardId = boardAPI.createBoard(new CreateBoardParams("my first board"),200).jsonPath().getString("id");
+
+        boardAPI.deleteBoard(boardId, 200);
+
+        Response response = boardAPI.deleteBoard(boardId, 404);
+
 
     }
 }

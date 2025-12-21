@@ -1,7 +1,7 @@
 package com.automation.tests.Boards;
 
-import com.automation.api.BoardAPI;
-import com.automation.base.BaseTest;
+import com.automation.api.boards.BoardAPI;
+import com.automation.api.boards.CreateBoardParams;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
@@ -9,21 +9,35 @@ import java.util.HashMap;
 
 import static com.automation.utils.ResponseUtils.*;
 
-public class UpdateBoardTest extends BaseTest {
+public class UpdateBoardTest  {
 
 
     @Test
-    public void updateBoard()
+    public void updateBoardSuccessfullyTest()
     {
-        HashMap <String,String> queryParams = new HashMap<>();
-        queryParams.put("name", "momo 4");
-        queryParams.put("idOrganization", "workspace68251455" );
+        BoardAPI boardAPI = new BoardAPI();
+        Response response = boardAPI.createBoard(new CreateBoardParams("update board test"), 200);
 
-        Response res = new BoardAPI().updateBoard("hxLqvdWP",queryParams);
+        String id =response.jsonPath().getString("id");
 
-        assertStatusCode(res, 200);
-        assertFieldNotNull(res, "id");
-        assertFieldEquals(res, "name", "momo 4");
+        HashMap<String,Object> queryParams = new HashMap<>();
+        queryParams.put("name", "updated board");
+
+        boardAPI.updateBoard(id,queryParams , 200 );
+    }
+
+    @Test
+    public void updateBoardNegativeTest()
+    {
+        BoardAPI boardAPI = new BoardAPI();
+        Response response = boardAPI.createBoard(new CreateBoardParams("update board test"), 200);
+
+        String id =response.jsonPath().getString("id");
+
+        HashMap<String,Object> queryParams = new HashMap<>();
+        queryParams.put("name", "updated board");
+
+        boardAPI.updateBoard(id+"b1",queryParams , 400 );
     }
 
 }

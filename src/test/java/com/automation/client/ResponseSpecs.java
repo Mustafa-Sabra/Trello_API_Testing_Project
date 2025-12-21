@@ -6,6 +6,15 @@ import io.restassured.specification.ResponseSpecification;
 
 public class ResponseSpecs {
 
+    public static ResponseSpecification ResponseSpecsFactory(int statusCode)
+    {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
+                .build();
+    }
+
+
+
     public static ResponseSpecification success()
     {
         return new ResponseSpecBuilder()
