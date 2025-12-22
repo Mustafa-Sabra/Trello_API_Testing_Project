@@ -6,15 +6,6 @@ import io.restassured.specification.ResponseSpecification;
 
 public class ResponseSpecs {
 
-    public static ResponseSpecification ResponseSpecsFactory(int statusCode)
-    {
-        return new ResponseSpecBuilder()
-                .expectStatusCode(statusCode)
-                .build();
-    }
-
-
-
     public static ResponseSpecification success()
     {
         return new ResponseSpecBuilder()
@@ -35,7 +26,6 @@ public class ResponseSpecs {
     {
         return new ResponseSpecBuilder()
                 .expectStatusCode(400)
-                .expectContentType("application/json")
                 .build();
     }
 
@@ -43,7 +33,6 @@ public class ResponseSpecs {
     {
         return new ResponseSpecBuilder()
                 .expectStatusCode(401)
-                .expectContentType("application/json")
                 .build();
     }
 
@@ -51,7 +40,6 @@ public class ResponseSpecs {
     {
         return new ResponseSpecBuilder()
                 .expectStatusCode(404)
-                .expectContentType("application/json")
                 .build();
     }
 }

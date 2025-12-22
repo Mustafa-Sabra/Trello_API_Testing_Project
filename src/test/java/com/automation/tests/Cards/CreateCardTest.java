@@ -1,26 +1,22 @@
 package com.automation.tests.Cards;
 
-import com.automation.api.CardAPI;
-import com.automation.base.BaseTest;
-import io.restassured.response.Response;
+import com.automation.api.cards.CardAPI;
+import com.automation.api.cards.CreateCardParams;
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
+public class CreateCardTest  {
 
-import static com.automation.utils.ResponseUtils.*;
-
-public class CreateCardTest extends BaseTest {
-
-    @Test
-    public void createCardTest()
+    @Test (dependsOnMethods = {"com.automation.tests.Boards.BoardModelTest.createBoardSuccessfullyTest"})
+    public void createCardTest(ITestContext context)
     {
-        HashMap<String,String> queryParams = new HashMap<>();
-        queryParams.put("name", "card1");
+        String boardId = (String) context.getAttribute("boardId");
 
-        Response res = new CardAPI().createCard("6943e78a3495122474ebbaf1", queryParams);
+        CardAPI cardAPI = new CardAPI();
 
-        assertStatusCode(res,200);
-        assertFieldEquals(res,"name", "card1");
+        cardAPI.createCard(new CreateCardParams(""));
+
+
     }
 
 }

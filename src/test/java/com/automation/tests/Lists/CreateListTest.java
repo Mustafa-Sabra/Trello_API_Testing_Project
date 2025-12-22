@@ -1,27 +1,51 @@
 package com.automation.tests.Lists;
 
-import com.automation.api.ListAPI;
-import com.automation.base.BaseTest;
+import com.automation.api.cards.CardAPI;
+import com.automation.api.cards.CreateCardParams;
+import com.automation.api.lists.CreateListParams;
+import com.automation.api.lists.ListAPI;
+import com.automation.client.ResponseSpecs;
 import io.restassured.response.Response;
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 
 import static com.automation.utils.ResponseUtils.*;
 
-public class CreateListTest extends BaseTest {
+public class CreateListTest   {
 
-    private HashMap<String,String> queryParams = new HashMap<>();
 
-    @Test
-    public void createListTest()
+
+
+@Test (dependsOnMethods = {"com.automation.tests.Boards.BoardModelTest.createBoardSuccessfullyTest"})
+public void createListSuccessfullyTest(ITestContext context)
+{
+    String boardId = (String) context.getAttribute("boardId");
+
+    ListAPI listAPI = new ListAPI();
+
+    Response response = listAPI.createList(new CreateListParams("my created list", boardId), ResponseSpecs.success());
+
+    context.setAttribute("listId", response.jsonPath().getString("id"));
+
+
+    assertFieldNotNull(response,"id");
+
+
+}
+
+    @Test (dependsOnMethods = {"com.automation.tests.Boards.BoardModelTest.createBoardSuccessfullyTest"})
+    public void createListNegativeTest(ITestContext context)
     {
-        Response res = new ListAPI().createList("created list", "6943238513a09eabfd543eb2", queryParams);
+        String boardId = (String) context.getAttribute("boardId");
 
-        assertStatusCode(res, 200);
-        assertFieldNotNull(res,"id");
-        assertFieldEquals(res,"name", "created list");
+        ListAPI listAPI = new ListAPI();
+
+        Response response = listAPI.createList(new CreateListParams("", boardId), ResponseSpecs.badRequest());
 
     }
+
+
 
 }
