@@ -20,7 +20,7 @@ public class ListAPI   {
         params.putAll(queryParams.build());
 
 
-        return RestClient.post("/lists", params, responseSpecs);
+        return RestClient.post("/lists/", params, responseSpecs);
 
     }
 
@@ -42,7 +42,7 @@ public class ListAPI   {
         params.putAll(queryParams);
 
 
-        return RestClient.post("/lists/" + id, params, responseSpecs);
+        return RestClient.update("/lists/" + id + "/closed", params, responseSpecs);
 
     }
 
@@ -53,7 +53,7 @@ public class ListAPI   {
         params.putAll(queryParams);
 
 
-        return RestClient.post("/lists/" + id, params, responseSpecs);
+        return RestClient.update("/lists/" + id, params, responseSpecs);
 
     }
 
