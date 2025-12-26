@@ -7,7 +7,7 @@ public class CreateCheckListParams {
     private final HashMap<String,Object> params = new HashMap<>();
 
 
-    CreateCheckListParams(String idCard)
+    public CreateCheckListParams(String idCard)
     {
         params.put("idCard", idCard);
     }
