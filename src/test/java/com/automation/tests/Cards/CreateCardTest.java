@@ -2,6 +2,7 @@ package com.automation.tests.Cards;
 
 import com.automation.api.cards.CardAPI;
 import com.automation.api.cards.CreateCardParams;
+import com.automation.client.ResponseSpecs;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
@@ -14,7 +15,7 @@ public class CreateCardTest  {
 
         CardAPI cardAPI = new CardAPI();
 
-        cardAPI.createCard(new CreateCardParams(""));
+        cardAPI.createCard(new CreateCardParams(""), ResponseSpecs.created());
 
 
     }
