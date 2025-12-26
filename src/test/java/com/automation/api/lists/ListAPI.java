@@ -36,7 +36,7 @@ public class ListAPI   {
     }
 
     @Step("Archive/Unarchive a List by ID")
-    public Response archiveOrUnarchiveList(String id, HashMap<String,Boolean> queryParams, ResponseSpecification responseSpecs)
+    public Response archiveOrUnarchiveList(String id, HashMap<String,Object> queryParams, ResponseSpecification responseSpecs)
     {
         HashMap<String,Object> params = AuthUtils.authUtils();
         params.putAll(queryParams);
