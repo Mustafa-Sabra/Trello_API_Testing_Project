@@ -49,7 +49,7 @@ public class ListPositiveTest {
 
         String listId = createListresponse.jsonPath().getString("id");
 
-        HashMap<String, Boolean> queryParams = new HashMap<>();
+        HashMap<String, Object> queryParams = new HashMap<>();
         queryParams.put("value", true);
 
 
@@ -75,7 +75,7 @@ public class ListPositiveTest {
 
         String listId = createListresponse.jsonPath().getString("id");
 
-        HashMap<String, Boolean> queryParams = new HashMap<>();
+        HashMap<String, Object> queryParams = new HashMap<>();
         queryParams.put("value", true);
 
 
